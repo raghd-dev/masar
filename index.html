@@ -4,139 +4,430 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>MASAR — Riyadh Metro</title>
-  <meta name="description" content="MASAR is a modern Riyadh Metro companion for exploring routes, stations, journeys, and metro information.">
+
+<meta
+name="description"
+content="MASAR is a modern Riyadh Metro companion designed to help users explore routes, stations, journeys, and metro information."
+
+>
+
   <style>
+    :root {
+      --background: #001B17;
+      --surface: #052A24;
+      --primary: #08B989;
+      --accent: #55E3BD;
+      --text: #F5F7F5;
+      --muted: #A0AAA6;
+      --border: #164A3F;
+      --gold: #C7A35B;
+      --amber: #D8B66B;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-```
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #07131f;
-  color: #ffffff;
-  line-height: 1.6;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px 20px;
-  background:
-    radial-gradient(circle at top, #173b52 0%, #07131f 55%);
-}
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-.container {
-  max-width: 850px;
-}
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-.logo {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 25px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  color: #07131f;
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
+    /* ---------- HERO ---------- */
 
-h1 {
-  font-size: clamp(48px, 9vw, 82px);
-  letter-spacing: 8px;
-  margin-bottom: 15px;
-}
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px;
+      overflow: hidden;
 
-.tagline {
-  font-size: clamp(20px, 4vw, 30px);
-  margin-bottom: 20px;
-  font-weight: 600;
-}
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(8, 185, 137, 0.16),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 80% 75%,
+          rgba(199, 163, 91, 0.09),
+          transparent 28%
+        ),
+        var(--background);
+    }
 
-.description {
-  max-width: 650px;
-  margin: 0 auto 35px;
-  color: #c8d5df;
-  font-size: 17px;
-}
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: rgba(8, 185, 137, 0.055);
+      filter: blur(80px);
+      top: -350px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
+    .container {
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
 
-.button {
-  display: inline-block;
-  padding: 13px 24px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 700;
-  background: #ffffff;
-  color: #07131f;
-}
+    /* ---------- LOGO ---------- */
 
-.button.secondary {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid #6e8798;
-}
+    .logo {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 30px;
 
-footer {
-  margin-top: 55px;
-  color: #8da1af;
-  font-size: 14px;
-}
-```
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
+      border-radius: 26px;
+
+      background:
+        linear-gradient(
+          145deg,
+          var(--primary),
+          #067F66
+        );
+
+      color: var(--text);
+
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: 3px;
+
+      box-shadow:
+        0 0 45px rgba(8, 185, 137, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.16);
+    }
+
+    /* ---------- BRAND ---------- */
+
+    .brand {
+      font-size: clamp(52px, 10vw, 92px);
+      line-height: 1;
+      letter-spacing: 12px;
+      font-weight: 800;
+
+      margin-left: 12px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--text),
+          var(--accent)
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .tagline {
+      margin-top: 22px;
+
+      font-size: clamp(21px, 4vw, 31px);
+      font-weight: 600;
+
+      color: var(--text);
+    }
+
+    .tagline span {
+      color: var(--accent);
+    }
+
+    .description {
+      max-width: 690px;
+      margin: 24px auto 38px;
+
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    /* ---------- BUTTONS ---------- */
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 170px;
+
+      padding: 14px 25px;
+
+      border-radius: 12px;
+
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+
+      color: #001B17;
+
+      background: var(--primary);
+
+      border: 1px solid var(--primary);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+
+      background: var(--accent);
+
+      box-shadow:
+        0 10px 35px rgba(8, 185, 137, 0.20);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    .button.secondary:hover {
+      background: var(--surface);
+      border-color: var(--primary);
+    }
+
+    /* ---------- FEATURES ---------- */
+
+    .features {
+      margin: 70px auto 0;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+
+      max-width: 760px;
+    }
+
+    .feature {
+      padding: 22px 18px;
+
+      background: rgba(5, 42, 36, 0.65);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      backdrop-filter: blur(12px);
+    }
+
+    .feature-icon {
+      color: var(--accent);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .feature h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ---------- GOLD ACCENT ---------- */
+
+    .sunset-line {
+      width: 100px;
+      height: 2px;
+
+      margin: 34px auto 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+
+      box-shadow:
+        0 0 15px rgba(199, 163, 91, 0.25);
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      margin-top: 70px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    .copyright {
+      margin-top: 10px;
+      color: #687873;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+      }
+
+      .brand {
+        letter-spacing: 7px;
+      }
+
+      .description {
+        font-size: 15px;
+      }
+    }
   </style>
+
 </head>
 
 <body>
+
   <main class="hero">
-    <div class="container">
 
 ```
+<div class="container">
+
+  <!-- MASAR LOGO -->
   <div class="logo">M</div>
 
-  <h1>MASAR</h1>
+  <!-- BRAND -->
+  <h1 class="brand">MASAR</h1>
 
-  <p class="tagline">Your Riyadh Metro Companion</p>
-
-  <p class="description">
-    MASAR is a modern mobile application designed to help users
-    explore Riyadh Metro routes, stations, journeys, and
-    transportation information in one convenient experience.
+  <p class="tagline">
+    Your <span>Riyadh Metro</span> Companion
   </p>
 
+  <p class="description">
+    MASAR brings Riyadh Metro information, routes, stations,
+    journey planning, and intelligent transportation features
+    together in one modern experience.
+  </p>
+
+  <!-- LINKS -->
   <div class="buttons">
-    <a class="button" href="https://raghd-dev.github.io/masar-privacy-policy/">
+
+    <a
+      class="button"
+      href="https://raghd-dev.github.io/masar-privacy-policy/"
+    >
       Privacy Policy
     </a>
 
-    <a class="button secondary" href="https://raghd-dev.github.io/masar-terms-of-use/">
+    <a
+      class="button secondary"
+      href="https://raghd-dev.github.io/masar-terms-of-use/"
+    >
       Terms of Use
     </a>
+
   </div>
 
+  <!-- FEATURES -->
+  <div class="features">
+
+    <div class="feature">
+      <div class="feature-icon">✦</div>
+      <h3>Explore</h3>
+      <p>Discover Riyadh Metro routes and stations.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">⌁</div>
+      <h3>Plan</h3>
+      <p>Plan journeys with a clear and simple experience.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">◎</div>
+      <h3>Navigate</h3>
+      <p>Access useful metro information wherever you go.</p>
+    </div>
+
+  </div>
+
+  <div class="sunset-line"></div>
+
   <footer>
-    © 2026 MASAR. All rights reserved.
+
+    <div>
+      <a href="https://raghd-dev.github.io/masar-privacy-policy/">
+        Privacy Policy
+      </a>
+
+      &nbsp; · &nbsp;
+
+      <a href="https://raghd-dev.github.io/masar-terms-of-use/">
+        Terms of Use
+      </a>
+    </div>
+
+    <div class="copyright">
+      © 2026 MASAR. All rights reserved.
+    </div>
+
   </footer>
 
 </div>
 ```
 
   </main>
+
 </body>
 </html>
